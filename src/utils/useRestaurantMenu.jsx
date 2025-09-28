@@ -25,7 +25,7 @@ const useRestaurantMenu = () => {
     setFilteredRestaurantsDisplay(resList);
   };
 
-  return { listOFRestaurants, filteredRestaurantDisplay };
+  return { listOFRestaurants, filteredRestaurantDisplay , setFilteredRestaurantsDisplay , setlistOFRestaurants};
 };
 
 export default useRestaurantMenu;

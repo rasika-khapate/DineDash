@@ -14,29 +14,32 @@ export const Header = () => {
 
   return (
     <>
-      <div className="header">
+      <div className="flex justify-between bg-amber-50 shadow-lg  shadow-blue-100 sm:bg-red-100  lg:bg-purple-200">
+        {/* above sm lg classes are equivalent of media queries */}
         <div className="logo-container">
-          <img className="logo" src={CDN_URL} />
+          <img className="h-20" src={CDN_URL} />
         </div>
-        <div className="nav-main-div">
-          <ul className="nav-items">
-            <li>Online Status : {onlineStatus ? "✅" : "🔴"}</li>
-            <li>
+        <div className="flex items-center pr-4">
+          <ul className="flex">
+            <li className="p-2">
+              Online Status : {onlineStatus ? "✅" : "🔴"}
+            </li>
+            <li className="p-2">
               <Link to="/">Home</Link>
             </li>
-            <li>
+            <li className="p-2">
               <Link to="/about">About Us</Link>
             </li>
-            <li>
+            <li className="p-2">
               <Link to="/contact">Contact Us</Link>
             </li>
-            <li>
+            <li className="p-2">
               <Link to="#">Cart</Link>
             </li>
-            <li>
+            <li className="p-2">
               <Link to="/grocery">Grocery</Link>
             </li>
-            <li>
+            <li className="p-2">
               <button onClick={handleLogging}>
                 {logButtonState ? "Login" : "Logout"}
               </button>

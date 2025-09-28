@@ -39,10 +39,10 @@ const RestaurantMenu = () => {
 
   return (
     <>
-      <div>
-        <h1>{name}</h1>
-        <h3>{cuisines.join(", ")}</h3>
-        <h3>{avgRating}</h3>
+      <div className="m-4 p-4 ">
+        <h1 className="text-lg font-bold">{name}</h1>
+        <h3 >Cuisines : {cuisines.join(", ")}</h3>
+        <h3>Rating : {avgRating}</h3>
         <h3>{costForTwoMessage}</h3>
         <ul>
           {itemCards.map((i) => (

@@ -754,3 +754,15 @@ useEffect(() => ..., []) is always called after the first render
 State update (setUserInfo) causes re-render, then componentDidUpdate
 
 Order may vary across multiple components because fetch is async
+
+===========================================================================================================================================
+
+# TAILWIND CSS NOTES
+
+1.tailwind css uses postcss behind the scenes and what is postcss? postcss is a tool for transforming css with javascript.
+
+2.tailwind css basically provides a classname for every single css line we can write for example. want color red? theres a classname for red etc
+
+3.tailwind is very light weight, the bundler only imports the css that is absolutely required in oour app(i.e, the css we write)
+
+4.even if the same css class (ex : m-4, p-4) is written at multiple places at multiple times, tailwind only includes/imports once in code

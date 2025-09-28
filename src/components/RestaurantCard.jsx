@@ -6,14 +6,14 @@ const RestaurantCard = ({ resData }) => {
   // or sla : {slaString} then use directly deliveryTime in span
   return (
     <>
-      <div className="res-card">
+      <div className=" bg-gray-200 m-2 p-2 w-48 rounded-lg hover:bg-gray-300 hover:border shadow-md">
         <img
           alt="image"
-          className="res-logo"
+          className="rounded-lg h-[170px] w-full"
           src={LOGO_URL + cloudinaryImageId}
         />
-        <h3>{name}</h3>
-        <h4>{cuisines.join(", ")}</h4>
+        <h3 className="font-bold py-4 text-lg">{name}</h3>
+        <h4>Cuisines : {cuisines.join(", ")}</h4>
         <h4>{avgRating} stars</h4>
         <h4>{costForTwo}</h4>
         <h4>{sla?.slaString}</h4>

@@ -20,13 +20,15 @@ class About extends Component {
     console.log("Parent Render");
     return (
       <>
+      <div className="m-4 p-4">
         <h1>About Us</h1>
         <h3>This is About Us page</h3>
-        <div id="about-us-sub-components">
+        <div className="flex justify-around">
           <UserFunctional />
           <UserClass name={"Rasika class"} />
-          <UserClass name={"Suhasini class"} />
+          <UserClass  name={"Suhasini class"} />
           {/* <UserClass name={"Tushar class"} /> */}
+        </div>
         </div>
       </>
     );

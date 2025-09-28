@@ -10,7 +10,11 @@ const Body = () => {
 
   const onlineStatus = useOnlineStatus();
 
-  const { listOFRestaurants, filteredRestaurantDisplay } = useRestaurantMenu();
+  const {
+    listOFRestaurants,
+    filteredRestaurantDisplay,
+    setFilteredRestaurantsDisplay,
+  } = useRestaurantMenu();
 
   const handleFilteredRestaurants = () => {
     const filtered = filteredRestaurantDisplay.filter(
@@ -41,11 +45,11 @@ const Body = () => {
     <ShimmerUI />
   ) : (
     <>
-      <div id="topRes">
-        <div className="search">
+      <div className="flex">
+        <div className="py-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-e-black border-solid ml-4"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -53,6 +57,7 @@ const Body = () => {
           />
 
           <button
+            className="bg-blue-300 px-4 py-1.5 mx-4 rounded-md cursor-pointer"
             onClick={() => {
               handleSearch();
             }}
@@ -60,12 +65,16 @@ const Body = () => {
             Search
           </button>
         </div>
-
-        <button onClick={handleFilteredRestaurants}>
-          Top‑Rated Restaurants
-        </button>
+        <div className="py-4">
+          <button
+            onClick={handleFilteredRestaurants}
+            className=" bg-blue-200 px-4 py-1.5 mx-4 rounded-md cursor-pointer"
+          >
+            Top‑Rated Restaurants
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredRestaurantDisplay.map((i, index) => (
           <Link
             to={"restaurant/" + i.info.id ?? index}

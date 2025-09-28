@@ -37,7 +37,7 @@ componentWillUnmount(){
     const { login, name, location } = this.state.userInfo;
 
     return (
-      <div className="user-card">
+      <div className="m-4 p-4 w-fit border bg-gray-100">
         <p>Class Based</p>
         <h2>Login-Id : {login}</h2>
         <h2>Name : {name} </h2>

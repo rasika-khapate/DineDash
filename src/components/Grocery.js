@@ -1,7 +1,7 @@
 const Grocery = () => {
     return <>
     
-    <h1>This is my Grocery Store : SUNITA GENERAL STORES!! 
+    <h1 className="m-4 p-4 text-lg">This is my Grocery Store : SUNITA GENERAL STORES!! 
         You can find all your things here...
     </h1>
     </>
