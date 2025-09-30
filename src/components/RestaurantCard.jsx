@@ -3,6 +3,7 @@ import { LOGO_URL } from "../utils/constant";
 const RestaurantCard = ({ resData }) => {
   const { cloudinaryImageId, name, cuisines, avgRating, sla, costForTwo } =
     resData?.info;
+    // console.log(resData)
   // or sla : {slaString} then use directly deliveryTime in span
   return (
     <>
@@ -21,5 +22,20 @@ const RestaurantCard = ({ resData }) => {
     </>
   );
 };
+
+
+// creat HOF which takes RestaurantCard as input and return another component (which means it returns a JSX as well)
+
+export const WithVegLabel = (RestaurantCard) => {
+  return (props) => {
+    // console.log(props)
+    return <>
+
+    <label className="text-xs bg-green-300 rounded-md m-2 px-2 py-[4px] absolute">Veg</label>
+    <RestaurantCard {...props}/>
+    
+    </>
+  }
+}
 
 export default RestaurantCard;

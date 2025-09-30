@@ -766,3 +766,25 @@ Order may vary across multiple components because fetch is async
 3.tailwind is very light weight, the bundler only imports the css that is absolutely required in oour app(i.e, the css we write)
 
 4.even if the same css class (ex : m-4, p-4) is written at multiple places at multiple times, tailwind only includes/imports once in code
+
+===========================================================================================================================================
+
+Episode 9 : Data is the new oil
+
+# Higher order component: 
+1.HOF is a function that takes a component as input , enhances the component and returns a component
+2.HOF are pure functions, which means the function taking and inout and giving output, with no side effects
+
+# Controlled and Uncontrolled Components:
+
+1.One of the main jobs of react application is to handle and use THE DATA.
+2.In a react application, one of the two important layers are : DATA LAYER AND UI LAYER
+3.Your Data layer consist on states, props, local variables , { } curly braces inside JSX etc which powers the UI layer, UI layer is generally static and mostly consist of your JSX, the thing that should be presented on UI
+
+4.Lifting the state up to the parent makes the child a controlled component
+
+# Props Drilling
+
+Passing the data down to child via each and each component when they might not be usable to those intermediate components
+
+# Inteview question on difference between useContext and Redux usage

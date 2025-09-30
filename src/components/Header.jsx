@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CDN_URL } from "../utils/constant";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 export const Header = () => {
   const [logButtonState, setLogButtonState] = useState(true);
@@ -11,6 +12,9 @@ export const Header = () => {
   };
 
   const onlineStatus = useOnlineStatus();
+
+  const userData = useContext(UserContext)
+  
 
   return (
     <>
@@ -43,6 +47,10 @@ export const Header = () => {
               <button onClick={handleLogging}>
                 {logButtonState ? "Login" : "Logout"}
               </button>
+            </li>
+              <li className="p-2">
+              {userData.loggedInUser}
+              {/* or destructure loggedInUser above and use directly */}
             </li>
           </ul>
         </div>
