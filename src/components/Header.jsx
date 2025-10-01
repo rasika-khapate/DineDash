@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CDN_URL } from "../utils/constant";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const [logButtonState, setLogButtonState] = useState(true);
@@ -13,9 +14,12 @@ export const Header = () => {
 
   const onlineStatus = useOnlineStatus();
 
-  const userData = useContext(UserContext)
-  
+  const userData = useContext(UserContext);
 
+  const cartItems = useSelector((store) => {
+    // console.log(store.cart.items); // for debugging
+    return store.cart.itemList; // must return this!
+  });
   return (
     <>
       <div className="flex justify-between bg-amber-50 shadow-lg  shadow-blue-100 sm:bg-red-100  lg:bg-purple-200">
@@ -38,7 +42,7 @@ export const Header = () => {
               <Link to="/contact">Contact Us</Link>
             </li>
             <li className="p-2">
-              <Link to="#">Cart</Link>
+              <Link to="/cart">Cart ({cartItems.length})</Link>
             </li>
             <li className="p-2">
               <Link to="/grocery">Grocery</Link>
@@ -48,7 +52,7 @@ export const Header = () => {
                 {logButtonState ? "Login" : "Logout"}
               </button>
             </li>
-              <li className="p-2">
+            <li className="p-2">
               {userData.loggedInUser}
               {/* or destructure loggedInUser above and use directly */}
             </li>

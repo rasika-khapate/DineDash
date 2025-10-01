@@ -1,14 +1,18 @@
 import { LOGO_URL } from "../utils/constant";
-import { useContext } from "react";
-import UserContext from "../utils/UserContext";
+
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/cartSlice";
 
 const CategoryItems = ({ items }) => {
-  const { loggedInUser } = useContext(UserContext);
+  const dispatch = useDispatch();
+
+  const handleAddItem = (items) => {
+    // console.log(items);
+    dispatch(addItem(items));
+  };
 
   return (
     <div>
-      <h1>{loggedInUser}</h1>
-      {/* above H1 works only when you click on category items */}
       {items.map((c) => (
         <div
           key={c?.card?.info?.id}
@@ -26,7 +30,10 @@ const CategoryItems = ({ items }) => {
               className="rounded-lg"
             />
 
-            <button className="relative bottom-3 left-6 bg-white text-green-700 px-4 rounded-md cursor-pointer">
+            <button
+              className="relative bottom-3 left-6 bg-white text-green-700 px-4 rounded-md cursor-pointer"
+              onClick={() => handleAddItem(c)}
+            >
               Add
             </button>
           </div>
@@ -37,3 +44,10 @@ const CategoryItems = ({ items }) => {
 };
 
 export default CategoryItems;
+
+// ✅ Summary Table
+// Syntax	Executes on Click?	         Passes Argument?	       Correct?	   Notes
+// onClick={handleAddItem}	           ✅ Yes	                ❌ No	    ✅	Best when no args needed
+// onClick={handleAddItem(item)}	     ❌ No (runs on render)	✅ Yes	    ❌	Don't call the function directly
+// onClick={() => handleAddItem}	     ❌ No	                  ❌ No	    ❌	Returns function, doesn't call it
+// onClick={() => handleAddItem(item)} ✅ Yes	                ✅ Yes	    ✅	Best when args needed

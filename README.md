@@ -37,17 +37,15 @@ Yes — but with nuance.
 ✅ React will schedule a re-render because:
 setListOfRestaurants(filteredList) is called — and React’s useState <b>doesn't shallow-compare </b>the previous state and the new state values by default.
 
-
 # ((((((((((((((((((
-   
-   ✅ Visual Hierarchy
-Reference equality  →  Are they the same pointer?
-                      (React, JS ===)
 
-Shallow comparison  →  Do they have the same top-level elements/keys?
+✅ Visual Hierarchy
+Reference equality → Are they the same pointer?
+(React, JS ===)
 
-Deep comparison     →  Are *all* nested contents equal?
+Shallow comparison → Do they have the same top-level elements/keys?
 
+Deep comparison → Are _all_ nested contents equal?
 
 👉 So, when I said “React doesn’t shallow-compare arrays”, what I meant was:
 
@@ -83,7 +81,6 @@ Scenario Will React re-render? Will DOM change?
 setListOfRestaurants with a new array (even if contents same) ✅ Yes (because new array reference) ❌ No (because same keys, same component output)
 
 ===========================================================================================================================================
-
 
 # const [count , setCount] = useState(0)
 
@@ -769,9 +766,10 @@ Order may vary across multiple components because fetch is async
 
 ===========================================================================================================================================
 
-Episode 9 : Data is the new oil
+Episode 10 : Data is the new oil
 
-# Higher order component: 
+# Higher order component:
+
 1.HOF is a function that takes a component as input , enhances the component and returns a component
 2.HOF are pure functions, which means the function taking and inout and giving output, with no side effects
 
@@ -788,3 +786,183 @@ Episode 9 : Data is the new oil
 Passing the data down to child via each and each component when they might not be usable to those intermediate components
 
 # Inteview question on difference between useContext and Redux usage
+
+===========================================================================================================================================
+
+Episode 11 : Lets build our store
+
+# REDUX
+
+1.Redux is a separate library which we install in our react app if and when required,
+NOTE: Redux is not mandatory to use
+2.Redux is primariliy used to manage state of our application
+3.Redux as defined on docs is A Predictable State Container for JS Application
+
+# My question:
+
+# In appStore we have imported cartReducer which is the value of the cart key, and the cartReducer has been exported from cartSlice which only contains reducer "functions", so how come we are getting the "items" part in the cart key in the store?
+
+🔍 So to answer your question directly:
+
+How do we get the items in the store under cart?
+
+Because:
+
+The reducer created by createSlice "includes the initial state as well".
+Even though this looks like “just a function,” this reducer has internal knowledge of:
+
+The initial state you gave: { items: ["abc", "def"] }
+The logic for updating that state when actions are dispatched
+
+This reducer behaves like:
+
+function reducer(state = { items: ["abc", "def"] }, action) {
+switch (action.type) {
+case 'cart/addItem':
+// logic to push into state.items
+case 'cart/removeItem':
+// logic to pop from state.items
+...
+default:
+return state;
+}
+}
+
+So yes — cartReducer contains the initial state as well, not just the update logic.
+🔥 The initial state is baked into the reducer function — that's how Redux works.
+
+When Redux initializes the store, it calls each reducer once with undefined as the state and a dummy action, which causes each reducer to return its initial state.
+
+That return value becomes the initial Redux state tree.
+
+✅ TL;DR Summary
+Concept Explanation
+cartReducer A function that holds both the reducer logic and the initialState
+Registered as cart: in store So state looks like store.cart = { items: [...] }
+Redux initializes state By calling each reducer with undefined and a dummy action (@@INIT)
+
+# REDUX INTERVIEW QUESTIONS
+
+1. wherever we subscribe to the store i.e using useSelector , make sure to subscribe to the right portion/part of the store ,this helps in performance optimization.
+
+Which means writing like this below
+
+const cartItems = useSelector((store) => store.cart.itemList);
+
+If we write like useSelector((store) => store) ; const cartItems = store.cart.itemList
+This above code will also work, but this is subscribing to the WHOLE STORE AND THEN EXTRACTING THE ITEMS PART
+
+# What If You Need Multiple Values from a Slice?
+
+If you need more than one piece of data from the same slice, you can do either of the following:
+
+✅ Option 1: Select multiple specific properties at once (best option)
+const { itemList, totalPrice } = useSelector((store) => ({
+itemList: store.cart.itemList,
+totalPrice: store.cart.totalPrice,
+}));
+
+This works well because useSelector is still only watching for changes in itemList and totalPrice, not the whole slice.
+You avoid unnecessary re-renders if unrelated fields in store.cart change.
+React-Redux will shallow compare the returned object { itemList, totalPrice } — if either changes, the component will re-render.
+
+✅ Option 2: Use useSelector multiple times
+const itemList = useSelector((store) => store.cart.itemList);
+const totalPrice = useSelector((store) => store.cart.totalPrice);
+
+Perfectly valid and sometimes even better if you want more control over when each value causes a re-render.
+But if you are using 3–4+ selectors from the same slice, it might be neater to group them (as in Option 1).
+
+❌ Don't do this:
+const cart = useSelector((store) => store.cart);
+const itemList = cart.itemList;
+const totalPrice = cart.totalPrice;
+
+This re-renders the component whenever anything in cart changes, even if itemList and totalPrice didn’t.
+
+🧠 Pro Tip: Custom Selectors
+
+If you have repetitive access patterns or want memoization, you can define selectors in your slice file:
+// selectors.js
+export const selectItemList = (store) => store.cart.itemList;
+export const selectTotalPrice = (store) => store.cart.totalPrice;
+// in component
+const itemList = useSelector(selectItemList);
+const totalPrice = useSelector(selectTotalPrice);
+
+Or even use "reselect" for more complex derived data.
+
+# Why RTK allows us to MUTATE the state when it has prohibited in vanilla Redux?
+
+Redux (Classic) — Immutable by Yourself
+
+In vanilla Redux, you must manually ensure immutability.
+
+Example:
+const initialState = {
+count: 0,
+};
+
+function counterReducer(state = initialState, action) {
+switch (action.type) {
+case 'INCREMENT':
+// ❌ Not allowed: direct mutation
+// state.count += 1;
+
+      // ✅ Correct: return a new state object
+      return {
+        ...state,
+        count: state.count + 1,
+      };
+    default:
+      return state;
+
+}
+}
+
+You cannot directly mutate the state object in Redux — you have to return a new copy with changes, using ...spread, etc.
+
+🛠️ Redux Toolkit — Mutating is Allowed (but Actually Immutable)
+
+In Redux Toolkit, thanks to a library called Immer (bundled inside RTK), you are allowed to "mutate" the state directly in reducers, but it's actually safe and immutable under the hood.
+
+Example:
+import { createSlice } from '@reduxjs/toolkit';
+
+const counterSlice = createSlice({
+name: 'counter',
+initialState: { count: 0 },
+reducers: {
+increment(state) {
+// ✅ Looks like mutation, but Immer makes it immutable!
+state.count += 1;
+},
+},
+});
+
+export const { increment } = counterSlice.actions;
+export default counterSlice.reducer;
+
+RTK uses Immer to detect the mutations and produce a new immutable state object behind the scenes.
+
+🔍 So, What's the Difference?
+Feature Redux Redux Toolkit (RTK)
+State mutation allowed? ❌ No — must return new object ✅ Yes — RTK handles immutability via Immer
+Boilerplate ❗️ High ✅ Low — uses createSlice, etc.
+Reducer writing style Manual, verbose Cleaner and more concise
+Risk of bugs due to mutation High — must be careful Low — Immer protects from real mutation
+⚠️ Important Clarification:
+
+Even though RTK lets you "mutate" state, you're not truly mutating the Redux state directly. It's syntactic sugar provided by Immer, which internally does immutable state updates.
+
+# console.log(current.state) & RTK says, either mutate the existing state or return new state
+
+clearCart: (state) => {
+state.itemList.length = 0;
+},
+
+    or
+
+    clearCart: (state) => {
+      return {itemList : []}
+    }

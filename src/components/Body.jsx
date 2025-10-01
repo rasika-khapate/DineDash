@@ -59,6 +59,7 @@ const Body = () => {
             className="border border-e-black border-solid ml-4"
             value={searchText}
             onChange={(e) => {
+              console.log(e.target.value)
               setSearchText(e.target.value);
             }}
           />
@@ -84,7 +85,7 @@ const Body = () => {
           <input
             type="text"
             className="border border-e-black border-solid my-1"
-            value={loggedInUser}
+            // value={loggedInUser}
             onChange={(e) => {
               setUserName(e.target.value);
             }}
