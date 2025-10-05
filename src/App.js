@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import About from "./components/About";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import ContactUs from "./components/ContantUs";
+import ContactUs from "./components/ContactUs";
 import { ErrorPage } from "./components/ErrorPage";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";

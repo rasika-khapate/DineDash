@@ -1,7 +1,6 @@
 import { useState } from "react";
 import mennuData from "../utils/mennuData.json";
 import { ResCategory } from "./ResCategory";
-// import { MENU_URL } from "../utils/constant";
 
 // We can read resId here using usePraams hook given by react-router-dom and substitute it in api
 

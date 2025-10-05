@@ -3,7 +3,7 @@ import React from "react";
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.name + ": => Child Constructor");
+    // console.log(this.props.name + ": => Child Constructor");
     this.state = {
       userInfo: {
         name: "dummy",
@@ -14,7 +14,7 @@ class UserClass extends React.Component {
   }
 
   async componentDidMount() {
-    console.log(this.props.name + ": => Child ComponentDidMount");
+    // console.log(this.props.name + ": => Child ComponentDidMount");
     const data = await fetch("https://api.github.com/users/rasika-khapate");
     const json = await data.json();
 
@@ -24,15 +24,15 @@ class UserClass extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.name + "Child Component Did update");
+    // console.log(this.props.name + "Child Component Did update");
   }
 
 componentWillUnmount(){
-  console.log(this.props.name + "Child Component will unmount");
+  // console.log(this.props.name + "Child Component will unmount");
 }
 
   render() {
-    console.log(this.props.name + ": => Child Render");
+    // console.log(this.props.name + ": => Child Render");
 
     const { login, name, location } = this.state.userInfo;
 

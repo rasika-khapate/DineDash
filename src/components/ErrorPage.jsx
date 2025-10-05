@@ -1,8 +1,9 @@
 import { useRouteError } from "react-router";
+import React from "react";
 
 export const ErrorPage = () => {
   const error = useRouteError();
-  const {data, status, statusText} = error;
+  const { data, status, statusText } = error;
   console.log(error);
 
   return (

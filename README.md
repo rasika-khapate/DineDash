@@ -966,3 +966,38 @@ state.itemList.length = 0;
     clearCart: (state) => {
       return {itemList : []}
     }
+
+==========================================================================================================================================
+
+# Episode 13 : Time for test
+
+# Types of typing (for developer)
+
+A. Manual testing : testing the features etc manually
+
+B. Writing testing code/case
+1. Usit Testing : Test react components in isolation , eg Header, Restaurant cases
+2. Integrating Testing : Testing the integration of components , components communicating with each other
+3. End to end Testing  (E2E) : Testing all the flow of react application, simulation of user experience
+
+# REACT TESTING LIBRARY:
+
+React testing library is built on top of DOM testing library by adding APIs for working with react components
+RTL uses JEST , JEST is a delightful javascript framework
+
+Installed JEST and configured babel
+
+jsdom - jsdom is a library which parses and interacts with assembled HTML just like browser
+
+When we do a console.log of things while writing test cases, it return our JSX ELEMENTS
+
+
+it("Should load Header component with login button", () => {
+  render(<Header/>);
+});
+
+The above piece of code throws error :
+could not find react-redux context value; please ensure the component is wrapped in a <Provider>
+const userData = useContext(UserContext);
+
+Because we are testing the  header in isolation and it doesnt that that our application uses redux

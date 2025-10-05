@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import RestaurantCard, { WithVegLabel } from "./RestaurantCard";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router-dom";
@@ -37,7 +37,7 @@ const Body = () => {
     setFilteredRestaurantsDisplay(filteredRestaurants);
   };
 
-  // console.log(searchText);
+  console.log("==>", searchText);
 
   if (!onlineStatus) {
     return (
@@ -59,7 +59,7 @@ const Body = () => {
             className="border border-e-black border-solid ml-4"
             value={searchText}
             onChange={(e) => {
-              console.log(e.target.value)
+              // console.log(e.target.value)
               setSearchText(e.target.value);
             }}
           />
