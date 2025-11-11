@@ -24,18 +24,18 @@ class About extends Component {
         <div className="m-4 p-4">
           <h1>About Us</h1>
           <h3>This is About Us page</h3>
-          <div>
+          {/* <div>
             <UserContext.Consumer>
               {({ loggedInUser }) => (
                 <h1 className="font-semibold">{loggedInUser}</h1>
               )}
             </UserContext.Consumer>
-          </div>
-          <div className="flex justify-around">
+          </div> */}
+          {/* <div className="flex justify-around">
             <UserFunctional />
             <UserClass name={"Rasika class"} />
             <UserClass name={"Suhasini class"} />
-          </div>
+          </div> */}
         </div>
       </div>
     );

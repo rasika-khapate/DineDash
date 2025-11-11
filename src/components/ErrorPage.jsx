@@ -4,7 +4,7 @@ import React from "react";
 export const ErrorPage = () => {
   const error = useRouteError();
   const { data, status, statusText } = error;
-  console.log(error);
+  // console.log(error);
 
   return (
     <div>

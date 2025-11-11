@@ -11,8 +11,6 @@ const Body = () => {
 
   const onlineStatus = useOnlineStatus();
 
-  const RestaurantVeg = WithVegLabel(RestaurantCard);
-
   const {
     listOFRestaurants,
     filteredRestaurantDisplay,
@@ -47,6 +45,8 @@ const Body = () => {
       </h1>
     );
   }
+
+  const RestaurantVeg = WithVegLabel(RestaurantCard);
 
   return listOFRestaurants.length === 0 ? (
     <ShimmerUI />

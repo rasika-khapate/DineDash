@@ -5,8 +5,7 @@ import { ResCategory } from "./ResCategory";
 // We can read resId here using usePraams hook given by react-router-dom and substitute it in api
 
 const RestaurantMenu = () => {
-  const { name, cuisines } =
-    mennuData?.data?.cards[2]?.card?.card?.info;
+  const { name, cuisines } = mennuData?.data?.cards[2]?.card?.card?.info;
 
   const { itemCards } =
     mennuData?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
@@ -19,7 +18,7 @@ const RestaurantMenu = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-const [showIndex , setShowIndex] = useState(null)
+  const [showIndex, setShowIndex] = useState(null);
 
   return (
     <>
@@ -27,12 +26,12 @@ const [showIndex , setShowIndex] = useState(null)
         <h1 className="text-lg font-bold text-left">{name}</h1>
         <h3 className="text-left">Cuisines : {cuisines.join(", ")}</h3>
 
-        {categories.map((category , index) => (
+        {categories.map((category, index) => (
           <ResCategory
             key={category?.card?.card?.categoryId}
             itemList={category?.card?.card}
-            showItems = {index === showIndex ? true : false}
-            setShowIndex = {() => setShowIndex(index)}
+            showItems={index === showIndex ? true : false}
+            setShowIndex={() => setShowIndex(index)}
           />
         ))}
       </div>

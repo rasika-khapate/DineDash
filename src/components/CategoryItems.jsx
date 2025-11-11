@@ -15,7 +15,8 @@ const CategoryItems = ({ items }) => {
     <div>
       {items.map((c) => (
         <div
-          key={c?.card?.info?.id}
+          key={`${c?.card?.info?.id}-${Math.random()}`}
+          // to avoid duplicate keys in cart component
           className="bg-gray-150 my-[4px] px-2 py-4 text-left shadow-md flex justify-between"
         >
           <div className="w-10/12">
