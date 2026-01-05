@@ -41,7 +41,7 @@ it("Should load the cart item", () => {
     </BrowserRouter>
   );
 
-  const cartItem = screen.getByText(/Cart/); // this /cart/ is called a regex where we dont have to write the exact string of the item
+  const cartItem = screen.getByText(/Cart/); 
 
   expect(cartItem).toBeInTheDocument();
 });

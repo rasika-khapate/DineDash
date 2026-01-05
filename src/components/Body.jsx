@@ -19,7 +19,7 @@ const Body = () => {
 
   const { loggedInUser, setUserName } = useContext(UserContext);
 
-  // console.log(listOFRestaurants);
+  
 
   const handleFilteredRestaurants = () => {
     const filtered = filteredRestaurantDisplay.filter(
@@ -59,7 +59,7 @@ const Body = () => {
             className="border border-e-black border-solid ml-4"
             value={searchText}
             onChange={(e) => {
-              // console.log(e.target.value)
+              
               setSearchText(e.target.value);
             }}
           />
@@ -85,7 +85,7 @@ const Body = () => {
           <input
             type="text"
             className="border border-e-black border-solid my-1"
-            // value={loggedInUser}
+           
             onChange={(e) => {
               setUserName(e.target.value);
             }}
@@ -113,26 +113,4 @@ const Body = () => {
 
 export default Body;
 
-// ====================================================================================================================
 
-//   const fetchedData = await axios.get(
-//     "https://api.allorigins.win/raw?url=https://swiggy-api-4c740.web.app/swiggy-api.json"
-//   );
-
-//     console.log(fetchedData);
-
-//      const data = fetchedData.data;
-
-// const resList =
-//   data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-
-// console.log("✅ Restaurant List:", resList);
-
-// ====================================================================================================================
-
-// const restaurantCard = fetchedData.data.cards.find(
-//   (card) => card?.card?.id === "restaurant_grid_listing_v2"
-// );
-
-// const resList =
-//   restaurantCard?.card?.card?.gridElements?.infoWithStyle?.restaurants;

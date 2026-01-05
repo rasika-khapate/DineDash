@@ -17,13 +17,13 @@ export const Header = () => {
   const userData = useContext(UserContext);
 
   const cartItems = useSelector((store) => {
-    // console.log(store.cart.items); // for debugging
-    return store.cart.itemList; // must return this!
+   
+    return store.cart.itemList; 
   });
   return (
     <>
       <div className="flex justify-between bg-amber-50 shadow-lg  shadow-blue-100 sm:bg-red-100  lg:bg-purple-200">
-        {/* above sm lg classes are equivalent of media queries */}
+      
         <div className="logo-container">
           <img className="h-20" src={CDN_URL} />
         </div>
@@ -54,7 +54,7 @@ export const Header = () => {
             </li>
             <li className="p-2">
               {userData.loggedInUser}
-              {/* or destructure loggedInUser above and use directly */}
+              
             </li>
           </ul>
         </div>

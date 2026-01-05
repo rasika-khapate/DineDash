@@ -2,7 +2,7 @@ import { useState } from "react";
 import mennuData from "../utils/mennuData.json";
 import { ResCategory } from "./ResCategory";
 
-// We can read resId here using usePraams hook given by react-router-dom and substitute it in api
+
 
 const RestaurantMenu = () => {
   const { name, cuisines } = mennuData?.data?.cards[2]?.card?.card?.info;
@@ -40,28 +40,3 @@ const RestaurantMenu = () => {
 };
 
 export default RestaurantMenu;
-
-// This below code can be put into a CUSTOM HOOK like useRestaurantMenu() so that the code follows SINGLE RESPONSIBILITY PRINCIPLE which makes the code more modular, maintainable, resuable and testable.
-
-// const {resId} = useParams()
-
-// const resInfo = useRestaurantMenu(resId)
-
-// const useRestaurantCard = () => {
-
-// const [resInfo,setResInfo] = usestate(null)
-
-// useEffect(() => {
-// fetchMenu()
-// }, []);
-
-// const fetchMenu = async () => {
-//   const data = await fetch(MENU_URL + resId);
-//   const fetchedMenuData = await data.json();
-//   console.log(fetchedMenuData);
-//    setResInfo(fetchedMenuData)
-
-// return resInfo
-//   // Swiggy rejecting the above api call
-// };
-// }

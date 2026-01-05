@@ -19,7 +19,7 @@ const useRestaurantMenu = () => {
       fetchedData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
-    // console.log(resList);
+   
 
     setlistOFRestaurants(resList);
     setFilteredRestaurantsDisplay(resList);

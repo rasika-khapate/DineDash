@@ -7,7 +7,7 @@ const CategoryItems = ({ items }) => {
   const dispatch = useDispatch();
 
   const handleAddItem = (items) => {
-    // console.log(items);
+    
     dispatch(addItem(items));
   };
 
@@ -46,9 +46,4 @@ const CategoryItems = ({ items }) => {
 
 export default CategoryItems;
 
-// ✅ Summary Table
-// Syntax	Executes on Click?	         Passes Argument?	       Correct?	   Notes
-// onClick={handleAddItem}	           ✅ Yes	                ❌ No	    ✅	Best when no args needed
-// onClick={handleAddItem(item)}	     ❌ No (runs on render)	✅ Yes	    ❌	Don't call the function directly
-// onClick={() => handleAddItem}	     ❌ No	                  ❌ No	    ❌	Returns function, doesn't call it
-// onClick={() => handleAddItem(item)} ✅ Yes	                ✅ Yes	    ✅	Best when args needed
+

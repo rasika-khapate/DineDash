@@ -25,14 +25,14 @@ const Applayout = () => {
   }, []);
 
   return (
-    // Default
+   
     <Provider store={appStore}>
       <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-        {/* Rasika Khapate */}
+       
         <div className="app">
           <Header />
           <Outlet />
-          {/* keyword */}
+         
         </div>
       </UserContext.Provider>
     </Provider>

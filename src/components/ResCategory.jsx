@@ -2,7 +2,7 @@ import { useState } from "react";
 import CategoryItems from "./CategoryItems";
 
 export const ResCategory = ({ itemList, showItems, setShowIndex }) => {
-  //   const {itemList : { title }} = itemList; // works, but redundant code
+ 
 
   const [showCategoryToggle, setShowCategoryToggle] = useState(false);
 
@@ -33,3 +33,4 @@ export const ResCategory = ({ itemList, showItems, setShowIndex }) => {
     </>
   );
 };
+export default ResCategory;

@@ -21,6 +21,3 @@ test("Should load the button on ContactUs component", () => {
 
 })
 
-//describe("", ()=> {}) ::=> grouping of bunch of test cases
-// it / test are both same, it is an alias of test , just a better naming convention like it("should do....")
-
